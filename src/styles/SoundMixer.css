@@ -1,0 +1,206 @@
+/*
+ * SoundMixer.css
+ * Como un panel de control de un estudio musical,
+ * estos estilos dan forma a las herramientas que moldean el sonido,
+ * permitiendo que los dedos del artista ajusten cada matiz,
+ * como un pintor que mezcla colores en su paleta sonora.
+ */
+
+/* El contenedor principal, como un laboratorio de sonido portátil */
+.sound-mixer-container {
+  margin-top: 2rem;
+  width: 100%;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* El botón que revela los secretos del sonido */
+.mixer-toggle-button {
+  background-color: #4a69bd;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mixer-toggle-button:hover {
+  background-color: #3d5aa9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.mixer-toggle-button.open {
+  background-color: #e67e22;
+}
+
+.mixer-toggle-button.open:hover {
+  background-color: #d35400;
+}
+
+/* El panel de control, donde la magia sonora cobra vida */
+.sound-mixer {
+  background-color: rgba(250, 250, 255, 0.9);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  color: #333;
+  margin-bottom: 2rem;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+/* El título del mezclador, como una promesa de posibilidades sonoras */
+.mixer-title {
+  font-size: 1.5rem;
+  color: #2c3e50;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Cada sección del mezclador, como capítulos de un libro sonoro */
+.mixer-section {
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 1rem;
+}
+
+.mixer-section h4 {
+  font-size: 1.1rem;
+  margin-bottom: 0.8rem;
+  color: #3498db;
+}
+
+/* Los controles, herramientas para esculpir el sonido */
+.mixer-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.mixer-control {
+  display: flex;
+  flex-direction: column;
+  min-width: 150px;
+  flex: 1;
+}
+
+.mixer-control label {
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem;
+  color: #555;
+  font-weight: 500;
+}
+
+.mixer-control input[type="range"] {
+  width: 100%;
+  margin-bottom: 0.3rem;
+  height: 6px;
+  accent-color: #3498db;
+}
+
+.mixer-control select {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: white;
+  font-size: 0.9rem;
+}
+
+.control-value {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+/* Selector de formas de onda, como una paleta de colores sonoros */
+.wave-selector {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.wave-button {
+  width: 50px;
+  height: 50px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.5rem;
+  transition: all 0.2s;
+}
+
+.wave-button:hover {
+  background-color: #f5f5f5;
+  transform: translateY(-2px);
+}
+
+.wave-button.active {
+  background-color: #3498db;
+  color: white;
+  border-color: #3498db;
+}
+
+/* Preajustes, como recetas de sonido listas para usar */
+.mixer-presets {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.preset-button {
+  padding: 8px 16px;
+  background-color: #2ecc71;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.preset-button:hover {
+  background-color: #27ae60;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Adaptación para diferentes pantallas */
+@media (max-width: 600px) {
+  .sound-mixer {
+    padding: 1rem;
+  }
+  
+  .mixer-controls {
+    flex-direction: column;
+  }
+  
+  .mixer-control {
+    min-width: 100%;
+  }
+  
+  .wave-button {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+}

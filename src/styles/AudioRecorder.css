@@ -1,0 +1,244 @@
+/*
+ * AudioRecorder.css
+ * Como un estudio de grabación en miniatura,
+ * donde cada botón es una puerta a la creatividad,
+ * capturando momentos musicales en el tiempo,
+ * guardando melodías como recuerdos digitales.
+ */
+
+/* El lienzo donde la magia de la grabación cobra vida */
+.audio-recorder {
+  margin-top: 1.5rem;
+  width: 100%;
+  max-width: 500px;
+  background-color: rgba(240, 240, 250, 0.9);
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Los controles, como un panel de estudio profesional */
+.recorder-controls {
+  display: flex;
+  justify-content: center;
+}
+
+/* Botones que son puertas a diferentes momentos musicales */
+.record-button,
+.stop-button,
+.play-button,
+.download-button,
+.new-recording-button {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 50px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+  min-width: 120px;
+  font-size: 0.95rem;
+}
+
+/* El botón rojo que inicia el viaje musical */
+.record-button {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.record-button:hover {
+  background-color: #c0392b;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* El botón que detiene el tiempo */
+.stop-button {
+  background-color: #3498db;
+  color: white;
+  animation: pulse 2s infinite;
+}
+
+.stop-button:hover {
+  background-color: #2980b9;
+}
+
+/* El botón que da vida a los recuerdos sonoros */
+.play-button {
+  background-color: #2ecc71;
+  color: white;
+}
+
+.play-button:hover {
+  background-color: #27ae60;
+}
+
+/* El portal para llevar la música contigo */
+.download-button {
+  background-color: #9b59b6;
+  color: white;
+}
+
+.download-button:hover {
+  background-color: #8e44ad;
+}
+
+/* La promesa de una nueva melodía */
+.new-recording-button {
+  background-color: #34495e;
+  color: white;
+}
+
+.new-recording-button:hover {
+  background-color: #2c3e50;
+}
+
+.record-button.preparing {
+  background-color: #f39c12;
+  cursor: not-allowed;
+}
+
+/* Estilos para los iconos */
+.record-icon,
+.stop-icon,
+.play-icon,
+.download-icon,
+.preparing-icon,
+.new-recording-icon {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  position: relative;
+}
+
+.record-icon {
+  background-color: white;
+  border-radius: 50%;
+}
+
+.stop-icon {
+  width: 12px;
+  height: 12px;
+  background-color: white;
+}
+
+.play-icon {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 8px 0 8px 14px;
+  border-color: transparent transparent transparent white;
+  margin-left: 4px;
+}
+
+.download-icon {
+  width: 14px;
+  height: 14px;
+  border: 2px solid white;
+  border-top: none;
+  position: relative;
+}
+
+.download-icon::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 8px;
+  background-color: white;
+}
+
+.download-icon::after {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  border-left: 2px solid white;
+  border-bottom: 2px solid white;
+  transform: translateX(-50%) rotate(-45deg);
+}
+
+.new-recording-icon {
+  border: 2px solid white;
+  border-radius: 50%;
+}
+
+.new-recording-icon::before {
+  content: '+';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.preparing-icon {
+  animation: spin 1s linear infinite;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-top: 2px solid white;
+  border-radius: 50%;
+}
+
+/* Animaciones */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(52, 152, 219, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(52, 152, 219, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(52, 152, 219, 0);
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.recording-result {
+  margin-top: 1rem;
+  border-top: 1px solid #ddd;
+  padding-top: 1rem;
+}
+
+.recording-info {
+  margin-bottom: 1rem;
+  text-align: center;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.recording-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 500px) {
+  .recording-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .record-button,
+  .stop-button,
+  .play-button,
+  .download-button,
+  .new-recording-button {
+    width: 100%;
+    padding: 0.7rem;
+  }
+}

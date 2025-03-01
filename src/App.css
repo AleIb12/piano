@@ -1,0 +1,69 @@
+/*
+ * App.css
+ * Como una partitura que guía la sinfonía visual,
+ * este CSS orquesta la armonía de nuestra aplicación.
+ * Cada elemento encuentra su lugar, como notas en un pentagrama,
+ * creando una melodía visual que deleita los sentidos.
+ */
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  width: 100%;
+}
+
+/* Como un escenario que abraza a los músicos */
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* El preludio de nuestra sinfonía visual */
+header {
+  margin-bottom: 2rem;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+/* El corazón de nuestra composición */
+main {
+  flex: 1;
+}
+
+/* El final de nuestra obra, suave y elegante */
+footer {
+  margin-top: 2rem;
+  color: #666;
+  font-size: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Un botón que revela secretos musicales */
+.dedication-trigger {
+  padding: 8px 16px;
+  background-color: #4a69bd;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-top: 0.5rem;
+}
+
+/* La magia del movimiento, como una nota que baila */
+.dedication-trigger:hover {
+  background-color: #3d5aa9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

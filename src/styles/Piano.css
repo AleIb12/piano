@@ -1,0 +1,244 @@
+/*
+ * Piano.css
+ * En este lienzo digital, cada tecla cobra vida,
+ * como un poema visual donde blanco y negro danzan.
+ * Un instrumento que une el arte y la tecnología,
+ * donde cada píxel es una nota en el aire.
+ */
+
+/* El escenario donde la magia comienza */
+.piano-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem auto;
+  max-width: 1000px;
+  width: 100%;
+}
+
+/* Como una nota que flota en el aire */
+.displayed-note {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  padding: 0.8rem;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+  min-width: 180px;
+  text-align: center;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Un marco que abraza la melodía visual */
+.piano-wrapper {
+  position: relative;
+  width: 100%;
+  height: 340px; /* Altura aumentada para dejar espacio a las notas que flotan */
+  display: flex;
+  justify-content: center;
+}
+
+/* El corazón del instrumento, teclas que esperan ser tocadas */
+.piano {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  height: 240px;
+  margin-bottom: 1.5rem;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 0 0 5px 5px;
+  background-color: rgba(30, 30, 30, 0.05);
+  padding: 10px;
+  /* Centrar el piano */
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 100%;
+}
+
+/* Un cielo donde las notas bailan libres */
+.music-notes-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Cada nota es una estrella fugaz musical */
+.music-note {
+  position: absolute;
+  font-size: 2rem;
+  animation: floatUpAndFade 2s ease-out forwards;
+  z-index: 10;
+  pointer-events: none;
+  text-shadow: 0 0 5px rgba(255,255,255,0.7);
+}
+
+/* La danza ascendente de las notas al cielo */
+@keyframes floatUpAndFade {
+  0% {
+    transform: translateY(0) scale(0.5);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-200px) scale(1.5) rotate(20deg);
+    opacity: 0;
+  }
+}
+
+/* El suave despertar de cada nota */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Las teclas, como versos de un poema musical */
+.piano-key {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 10px;
+  transition: all 0.1s ease;
+  cursor: pointer;
+}
+
+/* Teclas blancas, como páginas en blanco esperando ser escritas */
+.piano-key.white {
+  width: 45px;
+  height: 100%;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 0 0 5px 5px;
+  z-index: 1;
+}
+
+/* Teclas negras, como la tinta que da vida a la música */
+.piano-key.black {
+  width: 30px;
+  height: 60%;
+  background-color: #333;
+  margin-left: -15px;
+  margin-right: -15px;
+  z-index: 2;
+  border-radius: 0 0 3px 3px;
+}
+
+.piano-key.white.active {
+  background-color: #e5e5e5;
+  box-shadow: inset 0 -5px 10px rgba(0, 0, 0, 0.2);
+  transform: translateY(2px);
+}
+
+.piano-key.black.active {
+  background-color: #000;
+  box-shadow: inset 0 -2px 5px rgba(255, 255, 255, 0.1);
+  transform: translateY(2px);
+}
+
+.key-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  bottom: 10px;
+  font-size: 0.7rem;
+}
+
+.piano-key.white .key-label {
+  color: #333;
+}
+
+.piano-key.black .key-label {
+  color: white;
+}
+
+.note {
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+
+.keyboard-key {
+  margin-top: 5px;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+}
+
+.instructions {
+  text-align: center;
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+}
+
+.song-player {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+
+.play-button {
+  padding: 12px 25px;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  min-width: 250px;
+}
+
+.play-button:hover {
+  background-color: #3e8e41;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.play-button.playing {
+  background-color: #f44336;
+}
+
+.play-button.playing:hover {
+  background-color: #d32f2f;
+}
+
+.play-button:disabled {
+  background-color: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Hacer el piano responsive */
+@media (max-width: 768px) {
+  .piano {
+    height: 200px;
+  }
+  
+  .piano-key.white {
+    width: 35px;
+  }
+  
+  .piano-key.black {
+    width: 25px;
+    margin-left: -12.5px;
+    margin-right: -12.5px;
+  }
+  
+  .key-label {
+    font-size: 0.6rem;
+  }
+}
