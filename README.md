@@ -116,7 +116,6 @@ Este proyecto está bajo la Licencia MIT. Consulta el archivo `LICENSE` para má
 ## ✍️ Autor
 
 [Ale]
-[Enlaces a tus redes sociales o sitio web]
 
 ## 🤝 Contribuciones
 
