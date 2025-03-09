@@ -18,8 +18,10 @@ const Piano = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentSong, setCurrentSong] = useState(null);
   const [musicNotes, setMusicNotes] = useState([]);
+  const [colorSplashes, setColorSplashes] = useState([]);
   const songPlayerRef = useRef(null);
   const notesIdCounter = useRef(0);
+  const splashIdCounter = useRef(0);
   
   // Piano keys configuration with notes and key mappings
   const pianoKeys = [
@@ -65,6 +67,7 @@ const Piano = () => {
         playNote(pianoKey.note);
         setActiveKey(pianoKey.note);
         createMusicNote(pianoKey.note);
+        createColorSplash(pianoKey.note, pianoKey.color);
       }
     };
 
@@ -102,13 +105,22 @@ const Piano = () => {
     const noteIndex = pianoKeys.findIndex(k => k.note === note);
     const xPosition = noteIndex >= 0 ? noteIndex * 45 + 20 : Math.random() * 500;
     
+    // Añadir más variedad a las notas con diferentes animaciones
+    const animations = ['floatUpAndFade', 'bounce', 'spin'];
+    const randomAnimation = animations[Math.floor(Math.random() * animations.length)];
+    
     const newNote = {
       id,
       symbol: randomSymbol,
       color: noteColor,
       x: xPosition,
       y: 240,  // Comienza en la posición de las teclas
-      opacity: 1
+      opacity: 1,
+      animation: randomAnimation,
+      // Añadir rotación aleatoria
+      rotation: Math.floor(Math.random() * 40) - 20,
+      // Escala aleatoria para más variedad
+      scale: 0.8 + Math.random() * 0.4
     };
     
     setMusicNotes(prev => [...prev, newNote]);
@@ -117,6 +129,40 @@ const Piano = () => {
     setTimeout(() => {
       setMusicNotes(prev => prev.filter(note => note.id !== id));
     }, 2000);
+  };
+
+  /**
+   * Crea un efecto visual de salpicadura de color cuando se toca una tecla,
+   * como gotas de pintura que salpican un lienzo al ritmo de la música.
+   */
+  const createColorSplash = (note, keyColor) => {
+    const id = splashIdCounter.current++;
+    
+    // Encuentra la posición basada en la nota
+    const noteIndex = pianoKeys.findIndex(k => k.note === note);
+    const xPosition = noteIndex >= 0 ? noteIndex * 45 + 22 : Math.random() * 500;
+    
+    // Colores para las salpicaduras según el tipo de tecla
+    const getRandomColor = () => {
+      const colors = keyColor === 'white' 
+        ? ['#FF6347', '#4682B4', '#9370DB', '#3CB371', '#FFD700'] 
+        : ['#00CED1', '#FF69B4', '#7B68EE', '#32CD32', '#FFA500'];
+      return colors[Math.floor(Math.random() * colors.length)];
+    };
+    
+    const newSplash = {
+      id,
+      color: getRandomColor(),
+      x: xPosition,
+      y: keyColor === 'black' ? 150 : 220,  // Ajustar según la altura de la tecla
+    };
+    
+    setColorSplashes(prev => [...prev, newSplash]);
+    
+    // Eliminar la salpicadura después de la animación
+    setTimeout(() => {
+      setColorSplashes(prev => prev.filter(splash => splash.id !== id));
+    }, 800);
   };
 
   /**
@@ -133,10 +179,11 @@ const Piano = () => {
   };
 
   // Handle mouse click on piano keys
-  const handleKeyClick = (note) => {
+  const handleKeyClick = (note, color) => {
     playNote(note);
     setActiveKey(note);
-    createMusicNote(note);  // Crear nota musical al hacer clic
+    createMusicNote(note);
+    createColorSplash(note, color);
     setTimeout(() => setActiveKey(null), 300);
   };
   
@@ -189,15 +236,29 @@ const Piano = () => {
           {musicNotes.map(note => (
             <div 
               key={note.id} 
-              className="music-note"
+              className={`music-note ${note.animation}`}
               style={{
                 left: `${note.x}px`,
                 top: `${note.y}px`,
                 color: note.color,
+                transform: `rotate(${note.rotation}deg) scale(${note.scale})`,
               }}
             >
               {note.symbol}
             </div>
+          ))}
+          
+          {/* Efectos de salpicadura de color */}
+          {colorSplashes.map(splash => (
+            <div 
+              key={splash.id} 
+              className="color-splash"
+              style={{
+                left: `${splash.x}px`,
+                top: `${splash.y}px`,
+                background: splash.color,
+              }}
+            />
           ))}
         </div>
         
@@ -207,7 +268,7 @@ const Piano = () => {
             <div
               key={pianoKey.note}
               className={`piano-key ${pianoKey.color} ${activeKey === pianoKey.note ? 'active' : ''}`}
-              onClick={() => handleKeyClick(pianoKey.note)}
+              onClick={() => handleKeyClick(pianoKey.note, pianoKey.color)}
             >
               <div className="key-label">
                 <div className="note">{pianoKey.note}</div>
