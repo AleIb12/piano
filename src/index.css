@@ -6,15 +6,16 @@
  * y cada elemento encuentra su voz única.
  */
 
-/* La paleta de colores que pinta nuestro mundo */
+/* La paleta de colores que pinta nuestro mundo kawaii */
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* Using Nunito font from Google Fonts - add <link> to index.html */
+  font-family: 'Nunito', system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color-scheme: light; /* Primarily light theme for kawaii */
+  color: #5D5C61; /* Soft dark grey for text */
+  background-color: #FAF0E6; /* Linen background */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -22,15 +23,15 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Enlaces que brillan como estrellas en la noche */
+/* Enlaces que brillan como estrellas dulces */
 a {
   font-weight: 500;
-  color: #646cff;
+  color: #FFB6C1; /* Light Pink */
   text-decoration: inherit;
 }
 
 a:hover {
-  color: #535bf2;
+  color: #FFAAB5; /* Slightly darker pink */
 }
 
 /* El cuerpo que respira y se mueve con la música */
@@ -48,38 +49,34 @@ h1 {
   line-height: 1.1;
 }
 
-/* Botones que danzan bajo el tacto */
+/* Botones que invitan con ternura */
 button {
-  border-radius: 8px;
+  border-radius: 20px; /* More rounded */
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+  font-family: 'Nunito', inherit; /* Explicitly inherit Nunito */
+  background-color: #FFB6C1; /* Light Pink */
+  color: #ffffff; /* White text */
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: background-color 0.25s, transform 0.15s, box-shadow 0.15s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Soft shadow */
 }
 
 button:hover {
-  border-color: #646cff;
+  background-color: #FFAAB5; /* Slightly darker pink */
+  transform: translateY(-2px) scale(1.02); /* Slightly bigger lift and scale */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15); /* Slightly stronger shadow */
+}
+
+button:active {
+  transform: translateY(0px) scale(0.98); /* Press down effect */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Smaller shadow */
 }
 
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-/* La luz y la sombra se encuentran en armonía */
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+  outline: 4px auto #FFDAB9; /* Peach Puff outline */
+  outline-offset: 2px;
 }

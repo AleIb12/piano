@@ -19,6 +19,7 @@ const Piano = () => {
   const [currentSong, setCurrentSong] = useState(null);
   const [musicNotes, setMusicNotes] = useState([]);
   const [colorSplashes, setColorSplashes] = useState([]);
+  const [showMixer, setShowMixer] = useState(false); // Added state for mixer visibility
   const songPlayerRef = useRef(null);
   const notesIdCounter = useRef(0);
   const splashIdCounter = useRef(0);
@@ -228,8 +229,16 @@ const Piano = () => {
           Nota: {activeKey}
         </div>
       )}
-      
-      {/* El escenario donde la magia musical cobra vida */}
+
+      <div className="song-controls">
+        <button className="song-button kawaii-pink" onClick={() => handlePlaySong(besosEnGuerra, 'Besos en Guerra')}> Tocar "Besos en Guerra" 💖</button>
+        <button className="song-button kawaii-blue" onClick={() => handlePlaySong(neffexRumors, 'Rumors')}> Tocar "Rumors" ✨</button>
+        <button className="song-button kawaii-purple" onClick={() => handlePlaySong(disturbia, 'Disturbia')}> Tocar "Disturbia" 🎶</button>
+        <button className="mixer-button kawaii-yellow" onClick={() => setShowMixer(!showMixer)}> {showMixer ? 'Ocultar' : 'Mostrar'} Mezclador 🎀</button>
+      </div>
+
+      {showMixer && <SoundMixer />} 
+
       <div className="piano-wrapper">
         {/* El lienzo donde las notas danzan */}
         <div className="music-notes-container">
@@ -264,51 +273,18 @@ const Piano = () => {
         
         {/* El piano: un puente entre el mundo digital y el musical */}
         <div className="piano">
-          {pianoKeys.map((pianoKey) => (
+          {pianoKeys.map((key) => (
             <div
-              key={pianoKey.note}
-              className={`piano-key ${pianoKey.color} ${activeKey === pianoKey.note ? 'active' : ''}`}
-              onClick={() => handleKeyClick(pianoKey.note, pianoKey.color)}
+              key={key.note}
+              className={`piano-key ${key.color} ${activeKey === key.note ? 'active' : ''}`}
+              onMouseDown={() => handleKeyClick(key.note, key.color)}
             >
-              <div className="key-label">
-                <div className="note">{pianoKey.note}</div>
-                <div className="keyboard-key">{pianoKey.key}</div>
-              </div>
+              <span className="key-label">{key.key.toUpperCase()}</span>
             </div>
           ))}
         </div>
       </div>
-      
-      {/* El repertorio de melodías que esperan ser descubiertas */}
-      <div className="song-player">
-        <button 
-          className={`play-button ${isPlaying && currentSong === 'besosEnGuerra' ? 'playing' : ''}`} 
-          onClick={() => handlePlaySong(besosEnGuerra, 'besosEnGuerra')}
-          disabled={isPlaying && currentSong !== 'besosEnGuerra'}
-        >
-          {isPlaying && currentSong === 'besosEnGuerra' ? 'Detener' : 'Tocar "Besos en Guerra" - Morat'}
-        </button>
-        
-        <button 
-          className={`play-button ${isPlaying && currentSong === 'neffexRumors' ? 'playing' : ''}`} 
-          onClick={() => handlePlaySong(neffexRumors, 'neffexRumors')}
-          disabled={isPlaying && currentSong !== 'neffexRumors'}
-        >
-          {isPlaying && currentSong === 'neffexRumors' ? 'Detener' : 'Tocar "Rumors" - NEFFEX'}
-        </button>
-        
-        <button 
-          className={`play-button ${isPlaying && currentSong === 'disturbia' ? 'playing' : ''}`} 
-          onClick={() => handlePlaySong(disturbia, 'disturbia')}
-          disabled={isPlaying && currentSong !== 'disturbia'}
-        >
-          {isPlaying && currentSong === 'disturbia' ? 'Detener' : 'Tocar "Disturbia" - Rihanna'}
-        </button>
-      </div>
-      
-      {/* El laboratorio de sonido: donde la magia sonora cobra forma */}
-      <SoundMixer />
-      
+
       {/* La memoria del piano: capturando momentos musicales */}
       <AudioRecorder />
     </div>

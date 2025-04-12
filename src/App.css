@@ -29,7 +29,7 @@ header {
 header h1 {
   font-size: 2.5rem;
   margin-bottom: 0.5rem;
-  color: #333;
+  color: #E8ADAA; /* Soft Coral color for header */
 }
 
 /* El corazón de nuestra composición */
@@ -40,7 +40,7 @@ main {
 /* El final de nuestra obra, suave y elegante */
 footer {
   margin-top: 2rem;
-  color: #666;
+  color: #A0A0A0; /* Lighter grey for footer text */
   font-size: 0.9rem;
   display: flex;
   flex-direction: column;
@@ -48,22 +48,30 @@ footer {
   gap: 0.5rem;
 }
 
-/* Un botón que revela secretos musicales */
+/* Un botón que revela secretos musicales con ternura */
 .dedication-trigger {
   padding: 8px 16px;
-  background-color: #4a69bd;
-  color: white;
+  background-color: #D8BFD8; /* Thistle (soft purple) */
+  color: #ffffff; /* White text */
   border: none;
-  border-radius: 20px;
+  border-radius: 20px; /* Rounded */
   font-size: 0.9rem;
+  font-family: 'Nunito', inherit; /* Explicitly inherit Nunito */
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 0.2s ease-in-out; /* Smoother transition */
   margin-top: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Soft shadow */
 }
 
-/* La magia del movimiento, como una nota que baila */
+/* La magia del movimiento, como una nota que baila suavemente */
 .dedication-trigger:hover {
-  background-color: #3d5aa9;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #C9A9C9; /* Slightly darker Thistle */
+  transform: translateY(-2px) scale(1.03); /* Lift and scale */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Slightly stronger shadow */
+}
+
+.dedication-trigger:active {
+  transform: translateY(0px) scale(0.97); /* Press down effect */
+  background-color: #B898B8; /* Even darker Thistle */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Smaller shadow */
 }

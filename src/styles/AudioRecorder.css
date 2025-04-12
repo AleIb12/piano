@@ -23,77 +23,69 @@
   justify-content: center;
 }
 
-/* Botones que son puertas a diferentes momentos musicales */
+/* Botones que son puertas a diferentes momentos musicales con estilo kawaii */
 .record-button,
 .stop-button,
 .play-button,
 .download-button,
 .new-recording-button {
+  /* Inherit general button styles from index.css */
   padding: 0.8rem 1.5rem;
-  border: none;
-  border-radius: 50px;
+  border-radius: 50px; /* Very rounded */
   font-weight: bold;
-  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  transition: all 0.2s ease;
   min-width: 120px;
   font-size: 0.95rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Subtle text shadow */
 }
 
-/* El botón rojo que inicia el viaje musical */
-.record-button {
-  background-color: #e74c3c;
+/* El botón rojo que inicia el viaje musical (Kawaii Red/Pink) */
+.kawaii-record {
+  background-color: #FF6A6A; /* Light Coral */
   color: white;
 }
-
-.record-button:hover {
-  background-color: #c0392b;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+.kawaii-record:hover {
+  background-color: #FF4040; /* Coral Red */
 }
 
-/* El botón que detiene el tiempo */
-.stop-button {
-  background-color: #3498db;
-  color: white;
-  animation: pulse 2s infinite;
+/* El botón que detiene el tiempo (Kawaii Blue) */
+.kawaii-stop {
+  background-color: #87CEFA; /* Light Sky Blue */
+  color: #fff;
+  /* animation: pulse 2s infinite; */ /* Removing pulse for a calmer kawaii feel */
+}
+.kawaii-stop:hover {
+  background-color: #7EC0EE; /* Slightly darker Sky Blue */
 }
 
-.stop-button:hover {
-  background-color: #2980b9;
+/* El botón que da vida a los recuerdos sonoros (Kawaii Green) */
+.kawaii-play {
+  background-color: #98FB98; /* Pale Green */
+  color: #3CB371; /* Medium Sea Green text */
+}
+.kawaii-play:hover {
+  background-color: #8FBC8F; /* Dark Sea Green */
 }
 
-/* El botón que da vida a los recuerdos sonoros */
-.play-button {
-  background-color: #2ecc71;
-  color: white;
+/* El portal para llevar la música contigo (Kawaii Purple) */
+.kawaii-download {
+  background-color: #E6E6FA; /* Lavender */
+  color: #9370DB; /* Medium Purple text */
+}
+.kawaii-download:hover {
+  background-color: #D8D8FF; /* Lighter Lavender */
 }
 
-.play-button:hover {
-  background-color: #27ae60;
+/* La promesa de una nueva melodía (Kawaii Grey/Yellow) */
+.kawaii-new {
+  background-color: #FFFACD; /* Lemon Chiffon */
+  color: #B8860B; /* Dark Goldenrod text */
 }
-
-/* El portal para llevar la música contigo */
-.download-button {
-  background-color: #9b59b6;
-  color: white;
-}
-
-.download-button:hover {
-  background-color: #8e44ad;
-}
-
-/* La promesa de una nueva melodía */
-.new-recording-button {
-  background-color: #34495e;
-  color: white;
-}
-
-.new-recording-button:hover {
-  background-color: #2c3e50;
+.kawaii-new:hover {
+  background-color: #FFF8DC; /* Cornsilk */
 }
 
 .record-button.preparing {

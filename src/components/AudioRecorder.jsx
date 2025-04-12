@@ -94,72 +94,55 @@ const AudioRecorder = () => {
       <div className="recorder-controls">
         {recordingStatus === "inactivo" && (
           <button 
-            className="record-button" 
+            className="record-button kawaii-record" 
             onClick={handleStartRecording}
             aria-label="Iniciar grabación"
           >
-            <span className="record-icon"></span>
+            <span className="record-icon">🔴</span>
             Grabar
           </button>
         )}
         
         {recordingStatus === "grabando" && (
           <button 
-            className="stop-button" 
+            className="stop-button kawaii-stop" 
             onClick={handleStopRecording}
             aria-label="Detener grabación"
           >
-            <span className="stop-icon"></span>
+            <span className="stop-icon">⏹️</span>
             Detener ({formatDuration(duration)})
           </button>
         )}
         
-        {recordingStatus === "preparando" && (
-          <button 
-            className="record-button preparing" 
-            disabled
-            aria-label="Preparando grabación"
-          >
-            <span className="preparing-icon"></span>
-            Preparando...
-          </button>
-        )}
-      </div>
-      
-      {/* El tesoro de tu interpretación */}
-      {audioUrl && recordingStatus === "finalizado" && (
-        <div className="recording-result">
-          <div className="recording-info">
-            <span>Grabación completada ({formatDuration(duration)})</span>
-          </div>
-          <div className="recording-actions">
+        {recordingStatus === "finalizado" && (
+          <div className="playback-controls">
             <button 
-              className="play-button"
+              className="play-button kawaii-play"
               onClick={handlePlayRecording}
               aria-label="Reproducir grabación"
             >
-              <span className="play-icon"></span>
-              Reproducir
+              <span className="play-icon">▶️</span>
+              Reproducir ({formatDuration(duration)})
             </button>
             <button 
-              className="download-button"
+              className="download-button kawaii-download"
               onClick={handleDownload}
               aria-label="Descargar grabación"
             >
-              <span className="download-icon"></span>
+              <span className="download-icon">💾</span>
               Descargar
             </button>
             <button 
-              className="new-recording-button"
+              className="new-recording-button kawaii-new"
               onClick={() => handleStatusChange("inactivo")}
               aria-label="Nueva grabación"
             >
-              <span className="new-recording-icon"></span>
-              Nueva grabación
+              <span className="new-icon">✨</span>
+              Nuevo
             </button>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };
