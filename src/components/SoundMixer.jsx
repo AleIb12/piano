@@ -3,22 +3,29 @@ import { updateMixerSettings, getMixerSettings } from '../utils/audioUtils';
 import '../styles/SoundMixer.css';
 
 /**
- * Mezclador de Sonido - El laboratorio donde se esculpe el sonido
- * 
- * Como un alquimista musical que combina elementos sonoros,
- * este componente te permite dar forma a cada nota,
- * transformando simples vibraciones en experiencias únicas
- * que reflejan tu propio estilo y visión musical.
+ * Mezclador de Sonido Profesional
+ * Panel de control avanzado para la manipulación de audio en tiempo real
  */
 const SoundMixer = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [settings, setSettings] = useState(getMixerSettings());
   
-  // Los tipos de ondas disponibles, cada una con su propia personalidad
-  const waveTypes = ['sine', 'square', 'sawtooth', 'triangle'];
+  // Tipos de ondas disponibles con sus símbolos únicos
+  const waveTypes = [
+    { type: 'sine', symbol: '∿', name: 'Senoidal' },
+    { type: 'square', symbol: '⊓⊔', name: 'Cuadrada' },
+    { type: 'sawtooth', symbol: '⋀⋁', name: 'Diente de sierra' },
+    { type: 'triangle', symbol: '△▽', name: 'Triangular' }
+  ];
   
-  // Tipos de filtros, como lentes que revelan diferentes aspectos del sonido
-  const filterTypes = ['lowpass', 'highpass', 'bandpass', 'notch', 'allpass'];
+  // Tipos de filtros disponibles
+  const filterTypes = [
+    { type: 'lowpass', name: 'Paso bajo' },
+    { type: 'highpass', name: 'Paso alto' },
+    { type: 'bandpass', name: 'Paso banda' },
+    { type: 'notch', name: 'Rechazo' },
+    { type: 'allpass', name: 'Paso todo' }
+  ];
 
   // Aplicar cambios cuando se modifica un control
   const handleSettingChange = (setting, value) => {
@@ -37,9 +44,28 @@ const SoundMixer = () => {
     setIsOpen(!isOpen);
   };
 
-  // Para actualizar la configuración desde fuera del componente
+  // Resetear configuración a valores por defecto
+  const resetToDefaults = () => {
+    const defaultSettings = {
+      waveType: 'sine',
+      volume: 0.3,
+      attack: 0.1,
+      decay: 0.1,
+      sustain: 0.7,
+      release: 0.3,
+      filterType: 'lowpass',
+      filterFreq: 1000,
+      filterQ: 1,
+      detune: 0,
+      delay: 0,
+      reverb: 0
+    };
+    setSettings(defaultSettings);
+    updateMixerSettings(defaultSettings);
+  };
+
+  // Sincronizar configuración al montar el componente
   useEffect(() => {
-    // Sincronizar con la configuración global al montar
     const currentSettings = getMixerSettings();
     setSettings(currentSettings);
   }, []);
@@ -50,27 +76,29 @@ const SoundMixer = () => {
         className={`mixer-toggle-button ${isOpen ? 'open' : ''}`}
         onClick={toggleMixer}
       >
-        {isOpen ? 'Ocultar Mezclador' : 'Mostrar Mezclador'} 🎛️
+        {isOpen ? '🔽 Ocultar Mezclador' : '🎛️ Mostrar Mezclador'}
       </button>
       
       {isOpen && (
         <div className="sound-mixer">
-          <h3 className="mixer-title">Mezclador de Sonido</h3>
+          <div className="mixer-header">
+            <h3 className="mixer-title">Mezclador de Audio</h3>
+            <button className="reset-button" onClick={resetToDefaults}>
+              ↻ Resetear
+            </button>
+          </div>
           
           <div className="mixer-section">
-            <h4>Forma de Onda</h4>
+            <h4>🌊 Forma de Onda</h4>
             <div className="wave-selector">
-              {waveTypes.map((type) => (
+              {waveTypes.map((wave) => (
                 <button
-                  key={type}
-                  className={`wave-button ${settings.waveType === type ? 'active' : ''}`}
-                  onClick={() => handleSettingChange('waveType', type)}
-                  title={`Onda ${type}`}
+                  key={wave.type}
+                  className={`wave-button ${settings.waveType === wave.type ? 'active' : ''}`}
+                  onClick={() => handleSettingChange('waveType', wave.type)}
+                  title={wave.name}
                 >
-                  {type === 'sine' && '∿'}
-                  {type === 'square' && '⊓⊔'}
-                  {type === 'sawtooth' && '⋀⋁'}
-                  {type === 'triangle' && '△▽'}
+                  {wave.symbol}
                 </button>
               ))}
             </div>
@@ -78,7 +106,7 @@ const SoundMixer = () => {
           
           <div className="mixer-controls">
             <div className="mixer-control">
-              <label htmlFor="volume">Volumen</label>
+              <label htmlFor="volume">🔊 Volumen</label>
               <input
                 id="volume"
                 type="range"
@@ -92,20 +120,20 @@ const SoundMixer = () => {
             </div>
             
             <div className="mixer-control">
-              <label htmlFor="filterType">Tipo de Filtro</label>
+              <label htmlFor="filterType">🎛️ Tipo de Filtro</label>
               <select 
                 id="filterType" 
                 value={settings.filterType}
                 onChange={(e) => handleSettingChange('filterType', e.target.value)}
               >
-                {filterTypes.map(type => (
-                  <option key={type} value={type}>{type}</option>
+                {filterTypes.map(filter => (
+                  <option key={filter.type} value={filter.type}>{filter.name}</option>
                 ))}
               </select>
             </div>
             
             <div className="mixer-control">
-              <label htmlFor="filterFreq">Frecuencia del Filtro</label>
+              <label htmlFor="filterFreq">📶 Frecuencia del Filtro</label>
               <input
                 id="filterFreq"
                 type="range"
@@ -119,7 +147,7 @@ const SoundMixer = () => {
             </div>
             
             <div className="mixer-control">
-              <label htmlFor="filterQ">Resonancia (Q)</label>
+              <label htmlFor="filterQ">🎯 Resonancia (Q)</label>
               <input
                 id="filterQ"
                 type="range"
@@ -134,10 +162,10 @@ const SoundMixer = () => {
           </div>
           
           <div className="mixer-section">
-            <h4>Envolvente ADSR</h4>
+            <h4>📈 Envolvente ADSR</h4>
             <div className="mixer-controls">
               <div className="mixer-control">
-                <label htmlFor="attack">Ataque</label>
+                <label htmlFor="attack">⚡ Ataque</label>
                 <input
                   id="attack"
                   type="range"
@@ -151,7 +179,7 @@ const SoundMixer = () => {
               </div>
               
               <div className="mixer-control">
-                <label htmlFor="decay">Decaimiento</label>
+                <label htmlFor="decay">📉 Decaimiento</label>
                 <input
                   id="decay"
                   type="range"
@@ -165,7 +193,7 @@ const SoundMixer = () => {
               </div>
               
               <div className="mixer-control">
-                <label htmlFor="sustain">Sostenimiento</label>
+                <label htmlFor="sustain">🔄 Sostenimiento</label>
                 <input
                   id="sustain"
                   type="range"
@@ -179,7 +207,7 @@ const SoundMixer = () => {
               </div>
               
               <div className="mixer-control">
-                <label htmlFor="release">Liberación</label>
+                <label htmlFor="release">🔚 Liberación</label>
                 <input
                   id="release"
                   type="range"
@@ -195,10 +223,10 @@ const SoundMixer = () => {
           </div>
           
           <div className="mixer-section">
-            <h4>Efectos</h4>
+            <h4>✨ Efectos</h4>
             <div className="mixer-controls">
               <div className="mixer-control">
-                <label htmlFor="detune">Desafinación</label>
+                <label htmlFor="detune">🎵 Desafinación</label>
                 <input
                   id="detune"
                   type="range"
@@ -212,7 +240,7 @@ const SoundMixer = () => {
               </div>
               
               <div className="mixer-control">
-                <label htmlFor="delay">Delay</label>
+                <label htmlFor="delay">⏱️ Delay</label>
                 <input
                   id="delay"
                   type="range"
@@ -226,7 +254,7 @@ const SoundMixer = () => {
               </div>
               
               <div className="mixer-control">
-                <label htmlFor="reverb">Reverb</label>
+                <label htmlFor="reverb">🌊 Reverb</label>
                 <input
                   id="reverb"
                   type="range"
@@ -242,75 +270,78 @@ const SoundMixer = () => {
           </div>
           
           <div className="mixer-presets">
-            <button 
-              className="preset-button"
-              onClick={() => {
-                const pianoPreset = {
-                  waveType: 'triangle',
-                  volume: 0.4,
-                  attack: 0.01,
-                  decay: 0.2,
-                  sustain: 0.8,
-                  release: 0.5,
-                  filterType: 'lowpass',
-                  filterFreq: 5000,
-                  filterQ: 1,
-                  detune: 0,
-                  delay: 0,
-                  reverb: 0.1
-                };
-                setSettings(pianoPreset);
-                updateMixerSettings(pianoPreset);
-              }}
-            >
-              Piano
-            </button>
-            <button 
-              className="preset-button"
-              onClick={() => {
-                const synth1Preset = {
-                  waveType: 'sawtooth',
-                  volume: 0.3,
-                  attack: 0.1,
-                  decay: 0.3,
-                  sustain: 0.6,
-                  release: 1,
-                  filterType: 'lowpass',
-                  filterFreq: 2000,
-                  filterQ: 5,
-                  detune: 10,
-                  delay: 0.2,
-                  reverb: 0.3
-                };
-                setSettings(synth1Preset);
-                updateMixerSettings(synth1Preset);
-              }}
-            >
-              Sintetizador
-            </button>
-            <button 
-              className="preset-button"
-              onClick={() => {
-                const organPreset = {
-                  waveType: 'square',
-                  volume: 0.35,
-                  attack: 0.05,
-                  decay: 0.1,
-                  sustain: 1,
-                  release: 0.1,
-                  filterType: 'lowpass',
-                  filterFreq: 3000,
-                  filterQ: 2,
-                  detune: 0,
-                  delay: 0,
-                  reverb: 0.4
-                };
-                setSettings(organPreset);
-                updateMixerSettings(organPreset);
-              }}
-            >
-              Órgano
-            </button>
+            <h4 style={{textAlign: 'center', marginBottom: '1rem', color: '#f8f9fa'}}>🎹 Preajustes</h4>
+            <div className="preset-buttons">
+              <button 
+                className="preset-button"
+                onClick={() => {
+                  const pianoPreset = {
+                    waveType: 'triangle',
+                    volume: 0.4,
+                    attack: 0.01,
+                    decay: 0.2,
+                    sustain: 0.8,
+                    release: 0.5,
+                    filterType: 'lowpass',
+                    filterFreq: 5000,
+                    filterQ: 1,
+                    detune: 0,
+                    delay: 0,
+                    reverb: 0.1
+                  };
+                  setSettings(pianoPreset);
+                  updateMixerSettings(pianoPreset);
+                }}
+              >
+                🎹 Piano
+              </button>
+              <button 
+                className="preset-button"
+                onClick={() => {
+                  const synth1Preset = {
+                    waveType: 'sawtooth',
+                    volume: 0.3,
+                    attack: 0.1,
+                    decay: 0.3,
+                    sustain: 0.6,
+                    release: 1,
+                    filterType: 'lowpass',
+                    filterFreq: 2000,
+                    filterQ: 5,
+                    detune: 10,
+                    delay: 0.2,
+                    reverb: 0.3
+                  };
+                  setSettings(synth1Preset);
+                  updateMixerSettings(synth1Preset);
+                }}
+              >
+                🎛️ Sintetizador
+              </button>
+              <button 
+                className="preset-button"
+                onClick={() => {
+                  const organPreset = {
+                    waveType: 'square',
+                    volume: 0.35,
+                    attack: 0.05,
+                    decay: 0.1,
+                    sustain: 1,
+                    release: 0.1,
+                    filterType: 'lowpass',
+                    filterFreq: 3000,
+                    filterQ: 2,
+                    detune: 0,
+                    delay: 0,
+                    reverb: 0.4
+                  };
+                  setSettings(organPreset);
+                  updateMixerSettings(organPreset);
+                }}
+              >
+                🎵 Órgano
+              </button>
+            </div>
           </div>
         </div>
       )}
