@@ -6,7 +6,10 @@ function App() {
   return (
     <div className="app">
       <header>
-        {/* Encabezado del piano */}
+        <h1>🎹 Piano Virtual</h1>
+        <p className="header-subtitle">
+          Experimenta la música con nuestro piano virtual profesional
+        </p>
       </header>
       
       <main>
@@ -14,7 +17,8 @@ function App() {
       </main>
       
       <footer>
-        <p>Creado con React y Vite</p>
+        <p>Desarrollado con React, Vite y Web Audio API</p>
+        <p>© 2025 Piano Virtual - Hecho con 💙 para la música</p>
       </footer>
     </div>
   )

@@ -1,82 +1,256 @@
 /*
- * index.css
- * Como el lienzo base de una obra maestra,
- * estas líneas definen la esencia de nuestra aplicación.
- * Un mundo donde la luz y la oscuridad danzan,
- * y cada elemento encuentra su voz única.
+ * index.css - Sistema de Diseño Moderno
+ * Base para una interfaz elegante y profesional
  */
 
-/* La paleta de colores que pinta nuestro mundo kawaii */
+/* Variables CSS para un diseño consistente */
 :root {
-  /* Using Nunito font from Google Fonts - add <link> to index.html */
-  font-family: 'Nunito', system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  /* Typography */
+  --font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  
+  /* Colors - Modo oscuro elegante */
+  --color-primary: #667eea;
+  --color-primary-hover: #5a67d8;
+  --color-secondary: #764ba2;
+  --color-accent: #f093fb;
+  --color-accent-hover: #e879f9;
+  
+  /* Backgrounds */
+  --bg-primary: #0f0f23;
+  --bg-secondary: #1a1a2e;
+  --bg-tertiary: #16213e;
+  --bg-card: rgba(255, 255, 255, 0.05);
+  --bg-card-hover: rgba(255, 255, 255, 0.08);
+  
+  /* Text Colors */
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  
+  /* Borders */
+  --border-color: rgba(255, 255, 255, 0.1);
+  --border-color-hover: rgba(255, 255, 255, 0.2);
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  --shadow-glow: 0 0 20px rgba(102, 126, 234, 0.3);
+  
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  
+  /* Border Radius */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+  
+  /* Layout */
+  --max-width: 1200px;
+  --container-padding: 1rem;
+  
+  font-family: var(--font-family);
+  line-height: 1.6;
   font-weight: 400;
-
-  color-scheme: light; /* Primarily light theme for kawaii */
-  color: #5D5C61; /* Soft dark grey for text */
-  background-color: #FAF0E6; /* Linen background */
-
+  color: var(--text-primary);
+  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+  
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Enlaces que brillan como estrellas dulces */
+/* Reset y estilos base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-md);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  border-radius: var(--radius-md);
+  border: 2px solid var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, var(--color-primary-hover), var(--color-secondary));
+}
+
+/* Enlaces modernos */
 a {
   font-weight: 500;
-  color: #FFB6C1; /* Light Pink */
-  text-decoration: inherit;
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
 }
 
 a:hover {
-  color: #FFAAB5; /* Slightly darker pink */
+  color: var(--color-primary-hover);
 }
 
-/* El cuerpo que respira y se mueve con la música */
+/* Cuerpo con gradiente de fondo */
 body {
   margin: 0;
   display: flex;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, var(--bg-tertiary) 100%);
+  background-attachment: fixed;
 }
 
-/* Títulos que cantan con elegancia */
+/* Tipografía moderna */
 h1 {
-  font-size: 3.2em;
+  font-size: var(--font-size-4xl);
+  font-weight: 700;
   line-height: 1.1;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: var(--spacing-lg);
 }
 
-/* Botones que invitan con ternura */
+h2 {
+  font-size: var(--font-size-3xl);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-md);
+}
+
+h3 {
+  font-size: var(--font-size-2xl);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-sm);
+}
+
+h4 {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-sm);
+}
+
+p {
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-md);
+}
+
+/* Botones modernos con sistema de componentes */
 button {
-  border-radius: 20px; /* More rounded */
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: 'Nunito', inherit; /* Explicitly inherit Nunito */
-  background-color: #FFB6C1; /* Light Pink */
-  color: #ffffff; /* White text */
+  border-radius: var(--radius-xl);
+  border: none;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  font-family: var(--font-family);
   cursor: pointer;
-  transition: background-color 0.25s, transform 0.15s, box-shadow 0.15s;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  transition: all var(--transition-fast);
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  
+  /* Botón primario por defecto */
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  color: var(--text-primary);
+  box-shadow: var(--shadow-md), var(--shadow-glow);
+}
+
+button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left var(--transition-slow);
 }
 
 button:hover {
-  background-color: #FFAAB5; /* Slightly darker pink */
-  transform: translateY(-2px) scale(1.02); /* Slightly bigger lift and scale */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15); /* Slightly stronger shadow */
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg), 0 0 30px rgba(102, 126, 234, 0.4);
+}
+
+button:hover::before {
+  left: 100%;
 }
 
 button:active {
-  transform: translateY(0px) scale(0.98); /* Press down effect */
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Smaller shadow */
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
 }
 
 button:focus,
 button:focus-visible {
-  outline: 4px auto #FFDAB9; /* Peach Puff outline */
+  outline: 2px solid var(--color-primary);
   outline-offset: 2px;
+}
+
+/* Variantes de botones */
+.btn-secondary {
+  background: linear-gradient(135deg, var(--bg-card), var(--bg-card-hover));
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-secondary:hover {
+  background: linear-gradient(135deg, var(--bg-card-hover), rgba(255, 255, 255, 0.1));
+  border-color: var(--border-color-hover);
+}
+
+.btn-accent {
+  background: linear-gradient(135deg, var(--color-accent), #f5576c);
+  box-shadow: var(--shadow-md), 0 0 20px rgba(240, 147, 251, 0.3);
+}
+
+.btn-accent:hover {
+  box-shadow: var(--shadow-lg), 0 0 30px rgba(240, 147, 251, 0.5);
+}
+
+.btn-small {
+  padding: var(--spacing-xs) var(--spacing-md);
+  font-size: var(--font-size-sm);
+}
+
+.btn-large {
+  padding: var(--spacing-md) var(--spacing-2xl);
+  font-size: var(--font-size-lg);
 }

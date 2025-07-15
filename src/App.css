@@ -1,77 +1,180 @@
-/*
- * App.css
- * Como una partitura que guía la sinfonía visual,
- * este CSS orquesta la armonía de nuestra aplicación.
- * Cada elemento encuentra su lugar, como notas en un pentagrama,
- * creando una melodía visual que deleita los sentidos.
- */
+/* App.css - Layout principal moderno */
 
 #root {
-  max-width: 1280px;
+  max-width: var(--max-width);
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  padding: var(--container-padding);
   width: 100%;
+  min-height: 100vh;
 }
 
-/* Como un escenario que abraza a los músicos */
+/* Contenedor principal con diseño moderno */
 .app {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  position: relative;
 }
 
-/* El preludio de nuestra sinfonía visual */
+/* Decoración de fondo con partículas */
+.app::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(118, 75, 162, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 80%, rgba(240, 147, 251, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Header moderno con glassmorphism */
 header {
-  margin-bottom: 2rem;
+  background: var(--bg-card);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-2xl);
+  padding: var(--spacing-2xl);
+  margin-bottom: var(--spacing-2xl);
+  text-align: center;
+  box-shadow: var(--shadow-xl);
+  position: relative;
+  overflow: hidden;
+}
+
+header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.05), rgba(118, 75, 162, 0.05));
+  pointer-events: none;
 }
 
 header h1 {
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
-  color: #E8ADAA; /* Soft Coral color for header */
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  margin-bottom: var(--spacing-md);
+  position: relative;
+  z-index: 1;
 }
 
-/* El corazón de nuestra composición */
+.header-subtitle {
+  font-size: var(--font-size-lg);
+  color: var(--text-secondary);
+  margin-bottom: 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* Main content con mejor espaciado */
 main {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
 }
 
-/* El final de nuestra obra, suave y elegante */
+/* Footer elegante */
 footer {
-  margin-top: 2rem;
-  color: #A0A0A0; /* Lighter grey for footer text */
-  font-size: 0.9rem;
+  background: var(--bg-card);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-2xl);
+  padding: var(--spacing-lg);
+  margin-top: var(--spacing-2xl);
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
+  gap: var(--spacing-md);
+  box-shadow: var(--shadow-lg);
 }
 
-/* Un botón que revela secretos musicales con ternura */
-.dedication-trigger {
-  padding: 8px 16px;
-  background-color: #D8BFD8; /* Thistle (soft purple) */
-  color: #ffffff; /* White text */
-  border: none;
-  border-radius: 20px; /* Rounded */
-  font-size: 0.9rem;
-  font-family: 'Nunito', inherit; /* Explicitly inherit Nunito */
-  cursor: pointer;
-  transition: all 0.2s ease-in-out; /* Smoother transition */
-  margin-top: 0.5rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Soft shadow */
+/* Animaciones globales */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* La magia del movimiento, como una nota que baila suavemente */
-.dedication-trigger:hover {
-  background-color: #C9A9C9; /* Slightly darker Thistle */
-  transform: translateY(-2px) scale(1.03); /* Lift and scale */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Slightly stronger shadow */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
-.dedication-trigger:active {
-  transform: translateY(0px) scale(0.97); /* Press down effect */
-  background-color: #B898B8; /* Even darker Thistle */
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Smaller shadow */
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Animaciones de entrada */
+header {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+main {
+  animation: slideInRight 0.8s ease-out 0.2s both;
+}
+
+footer {
+  animation: fadeInUp 0.8s ease-out 0.4s both;
+}
+
+/* Responsividad mejorada */
+@media (max-width: 768px) {
+  #root {
+    padding: var(--spacing-md);
+  }
+  
+  header {
+    padding: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+  }
+  
+  main {
+    gap: var(--spacing-lg);
+  }
+  
+  footer {
+    padding: var(--spacing-md);
+    margin-top: var(--spacing-xl);
+  }
+}
+
+@media (max-width: 480px) {
+  #root {
+    padding: var(--spacing-sm);
+  }
+  
+  header {
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  main {
+    gap: var(--spacing-md);
+  }
 }

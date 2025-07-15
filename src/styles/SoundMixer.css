@@ -1,5 +1,14 @@
 /* SoundMixer.css - Mezclador de Audio Profesional */
 
+/* Integración con el nuevo sistema de diseño */
+.sound-mixer-container {
+  margin-top: var(--spacing-2xl);
+  width: 100%;
+  max-width: var(--max-width);
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* Contenedor principal del mezclador */
 .sound-mixer-container {
   margin-top: 2rem;
@@ -11,37 +20,39 @@
 
 /* Botón de toggle del mezclador */
 .mixer-toggle-button {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  color: var(--text-primary);
   border: none;
-  border-radius: 25px;
-  padding: 12px 24px;
+  border-radius: var(--radius-2xl);
+  padding: var(--spacing-md) var(--spacing-xl);
   font-weight: 600;
   cursor: pointer;
-  margin-bottom: 1rem;
-  transition: all 0.3s ease;
+  margin-bottom: var(--spacing-lg);
+  transition: all var(--transition-normal);
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: var(--spacing-sm);
   margin-left: auto;
   margin-right: auto;
-  font-size: 16px;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  font-size: var(--font-size-base);
+  box-shadow: var(--shadow-lg), var(--shadow-glow);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .mixer-toggle-button:hover {
   transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  box-shadow: var(--shadow-xl), 0 0 40px rgba(102, 126, 234, 0.5);
 }
 
 .mixer-toggle-button.open {
-  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
-  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+  background: linear-gradient(135deg, var(--color-accent) 0%, #f5576c 100%);
+  box-shadow: var(--shadow-lg), 0 0 30px rgba(240, 147, 251, 0.4);
 }
 
 .mixer-toggle-button.open:hover {
-  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+  box-shadow: var(--shadow-xl), 0 0 40px rgba(240, 147, 251, 0.6);
 }
 
 /* Panel principal del mezclador */
